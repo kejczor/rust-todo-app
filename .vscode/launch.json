@@ -1,0 +1,45 @@
+{
+   // Użyj funkcji IntelliSense, aby uzyskać informacje o możliwych atrybutach.
+   // Najedź kursorem, aby wyświetlić opisy istniejących atrybutów.
+   // Aby uzyskać więcej informacji, odwiedź stronę: https://go.microsoft.com/fwlink/?linkid=830387
+   "version": "0.2.0",
+   "configurations": [
+      {
+         "type": "lldb",
+         "request": "launch",
+         "name": "Debug executable 'first_project'",
+         "cargo": {
+            "args": [
+               "build",
+               "--bin=first_project",
+               "--package=first_project"
+            ],
+            "filter": {
+               "name": "first_project",
+               "kind": "bin"
+            }
+         },
+         "args": [],
+         "cwd": "${workspaceFolder}"
+      },
+      {
+         "type": "lldb",
+         "request": "launch",
+         "name": "Debug unit tests in executable 'first_project'",
+         "cargo": {
+            "args": [
+               "test",
+               "--no-run",
+               "--bin=first_project",
+               "--package=first_project"
+            ],
+            "filter": {
+               "name": "first_project",
+               "kind": "bin"
+            }
+         },
+         "args": [],
+         "cwd": "${workspaceFolder}"
+      }
+   ]
+}
