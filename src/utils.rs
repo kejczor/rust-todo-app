@@ -1,8 +1,3 @@
-use crate::Todos;
-use std::fs::File;
-
-const FILENAME: &str = "todos.json";
-
 pub fn input(msg: &str, expect_length: bool, remove_newline_char: bool) -> String {
     println!("{}", msg);
     let mut buf = String::new();
@@ -31,13 +26,3 @@ pub fn input(msg: &str, expect_length: bool, remove_newline_char: bool) -> Strin
 pub fn clear() {
     print!("{esc}c", esc = 27 as char);
 }
-
-pub fn load_todos(todos: &mut Todos) {
-    if let Ok(file) = File::open(FILENAME) {
-        if let Ok(json) = serde_json::from_reader::<_, Todos>(file) {
-            *todos = json;
-        }
-    }
-}
-
-pub fn save_todos(todos: &Todos) {}

@@ -1,8 +1,11 @@
+mod conts;
 mod structs;
 mod utils;
 
 use structs::{TodoItem, ID};
-use utils::{clear, input, load_todos};
+use utils::{clear, input};
+
+use crate::structs::Appdata;
 
 pub type Todos = Vec<TodoItem>;
 
@@ -24,7 +27,7 @@ fn main() {
     let mut id_generator = ID::new();
     let mut todos = Vec::new();
 
-    load_todos(&mut todos);
+    Appdata::load(&mut todos, &mut id_generator);
 
     println!("Welcome to TODO APP");
     loop {
@@ -40,8 +43,8 @@ fn main() {
         match choice.as_str() {
             "1" => add_todo(&mut todos, id_generator.get()),
             "2" => remove_todo(&mut todos),
-            "q" => return,
-            _ => println!("Unsupported choice"),
+            "q" => return Appdata::save(todos, id_generator),
+            _ => continue,
         }
     }
 }
