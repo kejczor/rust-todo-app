@@ -16,11 +16,12 @@ fn add_todo(todos: &mut Todos, id: u32) {
 }
 
 fn remove_todo(todos: &mut Todos) {
-    let input_id = input("Please type index of element to remove: ", true, true);
+    let input_id = input("Please type number of element to remove: ", true, true);
 
-    if let Some(index) = todos.iter().position(|x| x.id.to_string() == input_id) {
-        todos.remove(index);
-    }
+    // if let Some(index) = todos.iter().position(|x| x.id.to_string() == input_id) {
+    //     todos.remove(index);
+    // }
+    todos.remove(input_id.parse().unwrap());
 }
 
 fn main() {
@@ -36,7 +37,8 @@ fn main() {
         println!("-------------------------------------------");
         todos
             .iter()
-            .for_each(|todo| println!("  {} -> {}", todo.id, todo.title));
+            .enumerate()
+            .for_each(|(i, todo)| println!("  {} -> {}", i, todo.title));
         println!("-------------------------------------------");
         let choice = input("Choose option: ", true, true);
 

@@ -1,1 +1,1 @@
-rustc src\main.rs --out-dir bin && bin\main
+cargo build && cargo run
